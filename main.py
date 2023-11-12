@@ -150,6 +150,34 @@ class Trie:
         # Si boucle se termine, alors la clé est présente dans la trie et True est donc renvoyé
         return True
 
+    def _find_node(self, start:str):
+        node = self.racine
+        for letter in start:
+            if letter in node.enfants.keys():
+                node = node.enfants[letter]
+        return node
+
+    def _get_all_words(self, node, liste, maxi:int):
+        while len(liste) <= maxi:
+            for enf in node.enfants.values():
+                if enf.fin_cle:
+                    print("ok")
+                    liste.append(self._reconstruction_cle(enf))
+                if enf.enfants.keys():
+                    print(liste)
+                    liste = self._get_all_words(enf, liste, maxi)
+                return liste
+        else:
+            return liste
+
+    def give_word(self, start:str, nb:int):
+        node = self._find_node(start)
+        liste_mots = self._get_all_words(node, [], nb)
+        return liste_mots
+
+
+
+
 
 if __name__ == '__main__':
 
