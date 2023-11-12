@@ -56,7 +56,7 @@ class Trie:
 
         # Utilisation d'une méthode récursive pour construire la str à afficher
         for enfant_racine in self.racine.enfants.values():
-            str_base = self.construction_affichage(str_base, enfant_racine)
+            str_base = self._construction_affichage(str_base, enfant_racine)
 
         return str_base
 
@@ -104,8 +104,7 @@ class Trie:
             affichage+=prefix+"\n"
         return affichage
 
-
-    def reconstruction_cle(self, n):
+    def _reconstruction_cle(self, n):
         """
         Fonction permettant de reconstituer une clé à partir de son dernier noeud
         :param n: dernier noeud d'une clé -> Noeud
