@@ -44,7 +44,7 @@ class Trie:
         """
         Initialise la racine de la trie par un noeud simple sans parent.
         """
-        self.racine = Noeud("", Noeud("",None))
+        self.racine = Noeud("", None)
 
 
     def __str__(self):
