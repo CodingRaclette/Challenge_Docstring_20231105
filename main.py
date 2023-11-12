@@ -60,11 +60,10 @@ class Trie:
 
         return str_base
 
-
-    def construction_affichage(self, str, noeud_courant):
+    def _construction_affichage(self, affichage, noeud_courant):
         """
         Fonction récursive permettant de construire la chaine de caractères représentant la trie
-        :param str: chaine de caractere à construire, celle qui va être affichée à la fin.
+        :param affichage: chaine de caractere à construire, celle qui va être affichée à la fin.
         :param noeud_courant: noeud à afficher.
         :return: string à afficher
         """
@@ -82,28 +81,28 @@ class Trie:
 
             for node in branche:
                 prefix += "|  " if len(node.parent.enfants.keys()) > 1 and node != list(node.parent.enfants.values())[-1] else "   "
-        str+=prefix
+        affichage+=prefix
 
 
         # Vérification: si c'est le dernier noeud du dico, affichage avec underscores, sinon tirets
 
-        str += f"|__{noeud_courant.lettre}" if noeud_courant == list(noeud_courant.parent.enfants.values())[-1] else f"|--{noeud_courant.lettre}"
+        affichage += f"|__{noeud_courant.lettre}" if noeud_courant == list(noeud_courant.parent.enfants.values())[-1] else f"|--{noeud_courant.lettre}"
 
         # Si le booléen indiquant la fin d'un mot est True, alors affichage du mot à la suite du noeud
-        str += f" *[{''.join(self.reconstruction_cle(noeud_courant))}]" if noeud_courant.fin_cle else ""
+        affichage += f" *[{''.join(self._reconstruction_cle(noeud_courant))}]" if noeud_courant.fin_cle else ""
 
         # Fin d'une ligne
-        str += "\n"
+        affichage += "\n"
 
         # Récursivité si le noeud courant possède des noeuds enfants.
         if noeud_courant.enfants.items():
             for enf in noeud_courant.enfants.values():
-                str = self.construction_affichage(str, enf)
+                affichage = self._construction_affichage(affichage, enf)
         elif noeud_courant != list(noeud_courant.parent.enfants.values())[-1]:
-            str+=prefix+"|\n"
+            affichage+=prefix+"|\n"
         else:
-            str+=prefix+"\n"
-        return str
+            affichage+=prefix+"\n"
+        return affichage
 
 
     def reconstruction_cle(self, n):
