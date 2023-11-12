@@ -107,8 +107,8 @@ class Trie:
     def _reconstruction_cle(self, n):
         """
         Fonction permettant de reconstituer une clé à partir de son dernier noeud
-        :param n: dernier noeud d'une clé -> Noeud
-        :return: clé->str
+        :param n: dernier noeud d'une clé
+        :return: clé
         """
         liste_lettres_cles = [n.lettre]
         if n.parent != self.racine:
@@ -117,6 +117,7 @@ class Trie:
                 dernier_n = dernier_n.parent
                 liste_lettres_cles.insert(0, dernier_n.lettre)
         return "".join(liste_lettres_cles)
+
 
 
     def add(self, mot:str):
