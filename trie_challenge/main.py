@@ -33,6 +33,9 @@ class Noeud:
         self.parent = parent
         self.enfants = {} # Dictionnaire de forme: {"lettre": Noeud}
 
+    def __str__(self):
+        return self.lettre
+
 
 
 class Trie:
@@ -157,22 +160,17 @@ class Trie:
                 node = node.enfants[letter]
         return node
 
-    def _get_all_words(self, node, liste, maxi:int):
-        while len(liste) <= maxi:
+    def _get_all_words(self, node, liste):
+        if node.fin_cle:
+            liste.append(self._reconstruction_cle(node))
+        if node.enfants.keys():
             for enf in node.enfants.values():
-                if enf.fin_cle:
-                    print("ok")
-                    liste.append(self._reconstruction_cle(enf))
-                if enf.enfants.keys():
-                    print(liste)
-                    liste = self._get_all_words(enf, liste, maxi)
-                return liste
-        else:
-            return liste
+                liste = self._get_all_words(enf, liste)
+        return liste
 
-    def give_word(self, start:str, nb:int):
+    def give_words(self, start:str):
         node = self._find_node(start)
-        liste_mots = self._get_all_words(node, [], nb)
+        liste_mots = self._get_all_words(node, [])
         return liste_mots
 
 

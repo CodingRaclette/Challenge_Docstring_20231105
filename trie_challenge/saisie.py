@@ -2,9 +2,9 @@
 Script déployant une interface graphique afin d'intégrer la trie dans un input utilisateur
 """
 import sys
-from PyQt5.QtWidgets import QMainWindow, QLabel, QLineEdit, QPushButton, QApplication
-from PyQt5.QtCore import QSize, QPoint
-from main import Trie
+from PyQt5.QtWidgets import QMainWindow, QLabel, QLineEdit, QPushButton, QApplication, QCompleter
+from PyQt5.QtCore import QSize
+from trie_challenge.main import Trie
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -21,6 +21,8 @@ class MainWindow(QMainWindow):
         self.line.resize(200, 32)
         self.line.textChanged.connect(self.actutrie)
         self.nameLabel.move(20, 20)
+        self.liste_completion = []
+
 
         pybutton = QPushButton('OK', self)
         pybutton.resize(200,32)
@@ -29,7 +31,9 @@ class MainWindow(QMainWindow):
     def actutrie(self):
         if len(self.line.text()) > 2:
             if trie.contains(self.line.text()):
-                print(trie.give_word(self.line.text(), 10))
+                self.liste_completion = trie.give_words(self.line.text())
+                print(self.liste_completion)
+
 
 if __name__ == "__main__":
 
