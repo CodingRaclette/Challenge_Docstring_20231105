@@ -86,7 +86,6 @@ class Trie:
                 prefix += "|  " if len(node.parent.enfants.keys()) > 1 and node != list(node.parent.enfants.values())[-1] else "   "
         affichage+=prefix
 
-
         # Vérification: si c'est le dernier noeud du dico, affichage avec underscores, sinon tirets
 
         affichage += f"|__{noeud_courant.lettre}" if noeud_courant == list(noeud_courant.parent.enfants.values())[-1] else f"|--{noeud_courant.lettre}"
