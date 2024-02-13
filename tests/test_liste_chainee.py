@@ -103,3 +103,11 @@ class TestCase:
         assert liste_test.at_index(0) == 3
         assert liste_test.at_index(1) == 10
         assert liste_test.at_index(2) == 30
+
+    def test_reversed(self):
+        liste_test = self.mock_list()
+        liste_test.append(20)
+        liste_test.append(100)
+        liste_test.append(80)
+        liste_test.reversed()
+        assert str(liste_test) == "[80, 100, 20, 30, 10, 3]"

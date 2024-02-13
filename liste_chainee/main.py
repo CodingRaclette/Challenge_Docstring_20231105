@@ -120,3 +120,13 @@ class Clist:
                 return node.val
             compteur += 1
             node = node.next
+
+    def reversed(self):
+        lenght = len(self)
+        node = self.first
+        compteur = 1
+        while compteur<=lenght:
+            self.insert(lenght, node.val)
+            node = node.next
+            compteur += 1
+        self.first = node
