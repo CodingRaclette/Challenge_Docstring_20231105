@@ -21,14 +21,14 @@ class Clist:
         self.last = None
 
     def __str__(self):
-        chaine = "["
+        chaine = ""
         if self.first:
             node = self.first
             while node:
                 chaine += str(node)
                 node = node.next
                 if node: chaine+=", "
-        return chaine + "]"
+        return f"[{chaine}]"
 
     def __len__(self):
         compteur = 0
