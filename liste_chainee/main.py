@@ -19,6 +19,7 @@ class Clist:
     def __init__(self):
         self.first = None
         self.last = None
+        self.lenght = 0
 
     def __str__(self):
         chaine = ""
@@ -31,16 +32,11 @@ class Clist:
         return f"[{chaine}]"
 
     def __len__(self):
-        compteur = 0
-        if self.first:
-            node = self.first
-            while node:
-                compteur += 1
-                node = node.next
-        return compteur
+        return self.lenght
 
 
     def append(self, val:int|str) -> None:
+        self.lenght += 1
         new_node = Cnode(val)
         if not self.last: # Pas encore de node donc on initialise first et last
             self.first = new_node
@@ -53,6 +49,7 @@ class Clist:
         # Gestion d'input en index
         if index >= len(self):
             raise IndexError(f"L'index {index} est trop élevé.")
+        self.lenght -= 1
 
         if index == 0:
             # Si premier élément, on change juste le first au n+1
@@ -73,6 +70,8 @@ class Clist:
         # Gestion d'input en index
         if index > len(self):
             raise IndexError(f"L'index {index} est trop élevé.")
+
+        self.lenght += 1
 
         new_node = Cnode(value)
         if index == 0:
@@ -122,7 +121,7 @@ class Clist:
             node = node.next
 
     def reversed(self):
-        lenght = len(self)
+        lenght = self.lenght
         node = self.first
         compteur = 1
         while compteur<=lenght:
