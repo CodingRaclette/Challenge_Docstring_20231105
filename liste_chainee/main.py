@@ -52,22 +52,25 @@ class Clist:
         # Gestion d'input en index
         if index >= len(self):
             raise IndexError(f"L'index {index} est trop élevé.")
-        self.lenght -= 1
-
-        if index == 0:
-            # Si premier élément, on change juste le first au n+1
-            self.first = self.first.next
+        self.length -= 1
+        if self.length == 0:
+            self.first = None
+            self.last = None
         else:
-            compteur = 0
-            node = self.first
-            while node:
-                if compteur == index-1:
-                    # Assimile le node n+2 au node n à la place du node n+1
-                    # Si l'index pointe le dernier élément de la liste, n+1 = None
-                    node.next = node.next.next if node.next.next else None
-                    break
-                compteur += 1
-                node = node.next
+            if index == 0:
+                # Si premier élément, on change juste le first au n+1
+                self.first = self.first.next
+            else:
+                compteur = 0
+                node = self.first
+                while node:
+                    if compteur == index-1:
+                        # Assimile le node n+2 au node n à la place du node n+1
+                        # Si l'index pointe le dernier élément de la liste, n+1 = None
+                        node.next = node.next.next if node.next.next else None
+                        break
+                    compteur += 1
+                    node = node.next
 
     def insert(self, index:int, value:str|int) -> None:
         # Gestion d'input en index
