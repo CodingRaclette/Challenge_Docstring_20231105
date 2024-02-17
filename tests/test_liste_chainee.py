@@ -25,6 +25,12 @@ class TestCase:
         assert liste_test.first is liste_test.last
         assert liste_test.first.next is None
 
+    def test_append_str(self):
+        liste_test = Clist()
+        liste_test.append("lorem ipsum")
+        assert str(liste_test) == "['lorem ipsum']"
+
+
     def test_append_two(self):
         liste_test = Clist()
         liste_test.append(3)
@@ -58,6 +64,15 @@ class TestCase:
         assert str(liste_test) == "[3, 10, 30]"
         liste_test.remove_at(2)
         assert str(liste_test) == "[3, 10]"
+
+    def test_remove_only_val(self):
+        liste_test = Clist()
+        liste_test.append('3')
+        liste_test.remove_at(0)
+        assert liste_test.first is None
+        assert liste_test.last is None
+
+
 
     def test_remove_at_OutOR(self):
         liste_test = self.mock_list()
@@ -111,3 +126,10 @@ class TestCase:
         liste_test.append(80)
         liste_test.reversed()
         assert str(liste_test) == "[80, 100, 20, 30, 10, 3]"
+        assert liste_test.length == 6
+
+    def test_is_unique(self):
+        liste_test = self.mock_list()
+        assert liste_test.is_unique() == True
+        liste_test.append(3)
+        assert liste_test.is_unique() == False
