@@ -83,6 +83,8 @@ class Clist:
         if index == 0:
             new_node.next = self.first # Le node inséré reçoit l'actuel first en guise de n+1
             self.first = new_node # Le nouveau node devient alors le first
+        elif index == len(self):
+            self.append(value)
         else:
             compteur = 0
             node = self.first
