@@ -19,7 +19,7 @@ class Clist:
     def __init__(self):
         self.first = None
         self.last = None
-        self.lenght = 0
+        self.length = 0
 
     def __str__(self):
         chaine = ""
@@ -32,11 +32,11 @@ class Clist:
         return f"[{chaine}]"
 
     def __len__(self):
-        return self.lenght
+        return self.length
 
 
     def append(self, val:int|str) -> None:
-        self.lenght += 1
+        self.length += 1
         new_node = Cnode(val)
         if not self.last: # Pas encore de node donc on initialise first et last
             self.first = new_node
@@ -71,7 +71,7 @@ class Clist:
         if index > len(self):
             raise IndexError(f"L'index {index} est trop élevé.")
 
-        self.lenght += 1
+        self.length += 1
 
         new_node = Cnode(value)
         if index == 0:
@@ -88,16 +88,6 @@ class Clist:
                 compteur+=1
                 node = node.next
 
-    def contains(self, value:str|int) -> bool:
-        compteur = 0
-        node = self.first
-        while node:
-            if value == node.val:
-                return True
-            compteur += 1
-            node = node.next
-        return False
-
     def index_of(self, value:str|int) -> int:
         compteur = 0
         node = self.first
@@ -107,6 +97,12 @@ class Clist:
             compteur += 1
             node = node.next
         return -1
+
+    def contains(self, value:str|int) -> bool:
+        if self.index_of(value) == -1:
+            return False
+        else:
+            return True
 
     def at_index(self, index:int) -> int|str:
         if index >= len(self):
@@ -121,11 +117,12 @@ class Clist:
             node = node.next
 
     def reversed(self):
-        lenght = self.lenght
+        length = self.length
         node = self.first
         compteur = 1
-        while compteur<=lenght:
-            self.insert(lenght, node.val)
+        while compteur<=length:
+            self.insert(length, node.val)
             node = node.next
             compteur += 1
         self.first = node
+        self.length = length
