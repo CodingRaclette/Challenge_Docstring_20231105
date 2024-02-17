@@ -134,3 +134,13 @@ class Clist:
             compteur += 1
         self.first = node
         self.length = length
+
+    def is_unique(self) -> bool:
+        checklist=Clist()
+        node = self.first
+        while node:
+            if checklist.contains(node.val):
+                return False
+            checklist.append(node.val)
+            node = node.next
+        return True
