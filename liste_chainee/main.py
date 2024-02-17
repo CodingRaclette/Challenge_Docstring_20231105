@@ -11,7 +11,10 @@ class Cnode:
         self.next = next_node
 
     def __str__(self):
-        return str(self.val)
+        if type(self.val) == str:
+            return f"'{self.val}'"
+        else:
+            return str(self.val)
 
 
 class Clist:
@@ -116,7 +119,7 @@ class Clist:
             compteur += 1
             node = node.next
 
-    def reversed(self):
+    def reversed(self) -> None:
         length = self.length
         node = self.first
         compteur = 1
