@@ -114,7 +114,7 @@ class Clist:
 
     def at_index(self, index:int) -> int|str:
         if index >= len(self):
-            raise IndexError(f"L'index {index} est trop élevé.")
+            raise IndexError(f"L'index {index} est trop élevé (Maximum: {len(self)}).")
 
         compteur = 0
         node = self.first
