@@ -124,16 +124,27 @@ class Clist:
             compteur += 1
             node = node.next
 
+    ## Déprecié
+    # def reversed(self) -> None:
+    #     length = self.length
+    #     node = self.first
+    #     compteur = 1
+    #     while compteur<=length:
+    #         self.insert(length, node.val)
+    #         node = node.next
+    #         compteur += 1
+    #     self.first = node
+    #     self.length = length
+
     def reversed(self) -> None:
-        length = self.length
+        lcopy = Clist()
         node = self.first
-        compteur = 1
-        while compteur<=length:
-            self.insert(length, node.val)
+        while node:
+            lcopy.insert(0, node.val)
             node = node.next
-            compteur += 1
-        self.first = node
-        self.length = length
+        self.first = lcopy.first
+        self.last = lcopy.last
+
 
     def is_unique(self) -> bool:
         checklist=Clist()
