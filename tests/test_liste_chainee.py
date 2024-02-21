@@ -21,9 +21,9 @@ class TestCase:
         liste_test = Clist()
         liste_test.append(13)
         assert str(liste_test) == "[13]"
-        assert liste_test.first.val == 13
-        assert liste_test.first is liste_test.last
-        assert liste_test.first.next is None
+        assert liste_test._first._val == 13
+        assert liste_test._first is liste_test._last
+        assert liste_test._first._next is None
 
     def test_append_str(self):
         liste_test = Clist()
@@ -35,9 +35,9 @@ class TestCase:
         liste_test = Clist()
         liste_test.append(3)
         liste_test.append(10)
-        assert type(liste_test.first.next) == Cnode
-        assert liste_test.first.next.val == 10
-        assert liste_test.last.val == 10
+        assert type(liste_test._first._next) == Cnode
+        assert liste_test._first._next._val == 10
+        assert liste_test._last._val == 10
 
     def test_append_multiple(self):
         liste_test = self.mock_list()
@@ -69,10 +69,8 @@ class TestCase:
         liste_test = Clist()
         liste_test.append('3')
         liste_test.remove_at(0)
-        assert liste_test.first is None
-        assert liste_test.last is None
-
-
+        assert liste_test._first is None
+        assert liste_test._last is None
 
     def test_remove_at_OutOR(self):
         liste_test = self.mock_list()
