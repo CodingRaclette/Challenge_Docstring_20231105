@@ -136,10 +136,7 @@ class Clist:
         return -1
 
     def contains(self, value:str|int) -> bool:
-        if self.index_of(value) == -1:
-            return False
-        else:
-            return True
+        return self.index_of(value) != -1
 
     def at_index(self, index:int) -> int|str:
         index = self._gestion_index(index)
