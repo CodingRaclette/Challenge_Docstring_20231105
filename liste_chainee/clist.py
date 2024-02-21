@@ -100,6 +100,8 @@ class Clist:
 
         index = self._gestion_index(index)
 
+        index = self._gestion_index(index)
+
 
     def insert(self, index:int, value:str|int) -> None:
         # Gestion d'input en index
