@@ -64,6 +64,7 @@ class TestCase:
         assert str(liste_test) == "[3, 10, 30]"
         liste_test.remove_at(2)
         assert str(liste_test) == "[3, 10]"
+        assert liste_test.last.val == 10
 
     def test_remove_only_val(self):
         liste_test = Clist()
@@ -96,6 +97,7 @@ class TestCase:
         liste_test = self.mock_list()
         liste_test.insert(3, 13)
         assert str(liste_test) == "[3, 10, 30, 13]"
+        assert len(liste_test) == 4
 
     def test_contains(self):
         liste_test = self.mock_list()
@@ -124,7 +126,7 @@ class TestCase:
         liste_test.append(80)
         liste_test.reversed()
         assert str(liste_test) == "[80, 100, 20, 30, 10, 3]"
-        assert liste_test.length == 6
+        assert len(liste_test) == 6
 
     def test_is_unique(self):
         liste_test = self.mock_list()
