@@ -119,8 +119,8 @@ class Clist:
             node = self._first
             while node:
                 if compteur == index - 1:
-                    new_node.next = node.next
-                    node.next = new_node
+                    new_node._next = node.next
+                    node._next = new_node
                     break
                 compteur+=1
                 node = node.next
