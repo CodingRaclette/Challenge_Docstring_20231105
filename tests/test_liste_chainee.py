@@ -133,3 +133,22 @@ class TestCase:
         assert liste_test.is_unique() == True
         liste_test.append(3)
         assert liste_test.is_unique() == False
+
+    def test_index_of_negative(self):
+        liste_test = self.mock_list()
+        assert liste_test.at_index(-1) == 30
+        assert liste_test.at_index(-2) == 10
+        assert liste_test.at_index(-3) == 3
+        with pytest.raises(IndexError):
+            liste_test.at_index(-4)
+
+    def test_insert_first_negative(self):
+        liste_test = self.mock_list()
+        liste_test.insert(-3, "start")
+        assert str(liste_test) == "['start', 3, 10, 30]"
+        assert liste_test.first.val == 'start'
+        assert len(liste_test) == 4
+
+    def test_get_item(self):
+        liste_test = self.mock_list()
+        assert liste_test[0] == 3
