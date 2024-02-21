@@ -77,8 +77,6 @@ class Clist:
 
     def remove_at(self, index:int) -> None:
         # Gestion d'input en index
-        if index >= len(self):
-            raise IndexError(f"L'index {index} est trop élevé.")
         self.length -= 1
         if self.length == 0:
             self.first = None
@@ -98,6 +96,8 @@ class Clist:
                         break
                     compteur += 1
                     node = node.next
+        index = self._gestion_index(index)
+
         index = self._gestion_index(index)
 
 
