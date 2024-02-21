@@ -77,31 +77,29 @@ class Clist:
 
     def remove_at(self, index:int) -> None:
         # Gestion d'input en index
-        self.length -= 1
-        if self.length == 0:
-            self.first = None
-            self.last = None
+        index = self._gestion_index(index)
+
+        self._length -= 1
+        if len(self) == 0:
+            self._first = None
+            self._last = None
+        elif index == 0:
+            # Si premier élément, on change juste le first au n+1
+            self._first = self._first.next
         else:
-            if index == 0:
-                # Si premier élément, on change juste le first au n+1
-                self.first = self.first.next
-            else:
-                compteur = 0
-                node = self.first
-                while node:
-                    if compteur == index-1:
-                        # Assimile le node n+2 au node n à la place du node n+1
-                        # Si l'index pointe le dernier élément de la liste, n+1 = None
-                        node.next = node.next.next if node.next.next else None
-                        break
-                    compteur += 1
-                    node = node.next
-        index = self._gestion_index(index)
-
-        index = self._gestion_index(index)
-
-        index = self._gestion_index(index)
-
+            compteur = 0
+            node = self._first
+            while node:
+                if compteur == index-1:
+                    # Assimile le node n+2 au node n à la place du node n+1
+                    # Si l'index pointe le dernier élément de la liste, n+1 = None
+                    node._next = node.next.next if node.next.next else None
+                    print(index, len(self))
+                    if index == len(self):
+                        self._last = node.next if node.next else node
+                    break
+                compteur += 1
+                node = node.next
 
     def insert(self, index:int, value:str|int) -> None:
         # Gestion d'input en index
