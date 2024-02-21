@@ -53,6 +53,18 @@ class Clist:
     def __getitem__(self, item):
         return self.at_index(item)
 
+    def _gestion_index(self, index, lastok=False):
+        if not isinstance(index, int):
+            raise IndexError(f"L'index doit être un entier. {index} n'en est pas un.")
+        elif (not lastok and index >= len(self)) or (lastok and index > len(self)):
+            raise IndexError(f"L'index {index} est trop élevé par rapport à la longueur de la liste: {len(self)}.")
+        elif index < 0:
+            if (index * -1) <= len(self):
+                return len(self) + index
+            else:
+                raise IndexError(f"L'index {index * -1} est trop élevé par rapport à la longueur de la liste: {len(self)}.")
+        else:
+            return index
 
     def append(self, val:int|str) -> None:
         self._length += 1
@@ -86,11 +98,12 @@ class Clist:
                         break
                     compteur += 1
                     node = node.next
+        index = self._gestion_index(index)
+
 
     def insert(self, index:int, value:str|int) -> None:
         # Gestion d'input en index
-        if index > len(self):
-            raise IndexError(f"L'index {index} est trop élevé.")
+        index = self._gestion_index(index, lastok=True)
 
         self._length += 1
 
@@ -128,8 +141,7 @@ class Clist:
             return True
 
     def at_index(self, index:int) -> int|str:
-        if index >= len(self):
-            raise IndexError(f"L'index {index} est trop élevé (Maximum: {len(self)}).")
+        index = self._gestion_index(index)
 
         compteur = 0
         node = self.first
