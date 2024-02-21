@@ -4,18 +4,7 @@ Challenge Docstring du 11/02/2024
 Exercice: créer une liste chainée
 """
 
-class Cnode:
-
-    def __init__(self, valeur:int|str, next_node=None):
-        self.val = valeur
-        self.next = next_node
-
-    def __str__(self):
-        if type(self.val) == str:
-            return f"'{self.val}'"
-        else:
-            return str(self.val)
-
+from liste_chainee.cnode import Cnode
 
 class Clist:
 
