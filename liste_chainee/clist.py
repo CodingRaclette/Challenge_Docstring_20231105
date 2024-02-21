@@ -141,25 +141,16 @@ class Clist:
     def at_index(self, index:int) -> int|str:
         index = self._gestion_index(index)
 
-        compteur = 0
-        node = self.first
-        while node:
-            if compteur == index:
-                return node.val
-            compteur += 1
-            node = node.next
-
-    ## Déprecié
-    # def reversed(self) -> None:
-    #     length = self.length
-    #     node = self.first
-    #     compteur = 1
-    #     while compteur<=length:
-    #         self.insert(length, node.val)
-    #         node = node.next
-    #         compteur += 1
-    #     self.first = node
-    #     self.length = length
+        if index == len(self)-1:
+            return self._last.val
+        else:
+            compteur = 0
+            node = self._first
+            while node:
+                if compteur == index:
+                    return node.val
+                compteur += 1
+                node = node.next
 
     def reversed(self) -> None:
         lcopy = Clist()
