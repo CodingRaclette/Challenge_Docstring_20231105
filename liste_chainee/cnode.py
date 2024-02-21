@@ -1,8 +1,3 @@
-import inspect
-
-def check_caller():
-    return str(inspect.stack()[2].filename.split("\\")[-1]) == "clist.py"
-
 
 class Cnode:
 
@@ -16,8 +11,7 @@ class Cnode:
 
     @val.setter
     def val(self, value):
-        if check_caller():
-            self._val = value
+        pass
 
 
     @property
@@ -26,8 +20,7 @@ class Cnode:
 
     @next.setter
     def next(self, value):
-        if check_caller():
-            self._next = value
+        pass
 
     def __str__(self):
         if isinstance(self._val, str):
