@@ -9,14 +9,38 @@ from liste_chainee.cnode import Cnode
 class Clist:
 
     def __init__(self):
-        self.first = None
-        self.last = None
-        self.length = 0
+        self._first = None
+        self._last = None
+        self._length = 0
+
+    @property
+    def first(self):
+        return self._first
+
+    @first.setter
+    def first(self, value):
+        pass
+
+    @property
+    def last(self):
+        return self._last
+
+    @last.setter
+    def last(self, value):
+        pass
+
+    @property
+    def length(self):
+        return
+
+    @length.setter
+    def length(self, value):
+        pass
 
     def __str__(self):
         chaine = ""
-        if self.first:
-            node = self.first
+        if self._first:
+            node = self._first
             while node:
                 chaine += str(node)
                 node = node.next
@@ -24,18 +48,17 @@ class Clist:
         return f"[{chaine}]"
 
     def __len__(self):
-        return self.length
+        return self._length
 
 
     def append(self, val:int|str) -> None:
-        self.length += 1
+        self._length += 1
         new_node = Cnode(val)
-        if not self.last: # Pas encore de node donc on initialise first et last
-            self.first = new_node
-            self.last = new_node
+        if not self._last: # Pas encore de node donc on initialise first et last
+            self._first = new_node
         else:
-            self.last.next = new_node # Ajout du nouveau node au next du dernier présent
-            self.last = new_node # Changement du last pour y mettre le nouveau node
+            self._last._next = new_node # Ajout du nouveau node au next du dernier présent
+        self._last = new_node # Changement du last pour y mettre le nouveau node
 
     def remove_at(self, index:int) -> None:
         # Gestion d'input en index
@@ -66,17 +89,17 @@ class Clist:
         if index > len(self):
             raise IndexError(f"L'index {index} est trop élevé.")
 
-        self.length += 1
+        self._length += 1
 
         new_node = Cnode(value)
         if index == 0:
-            new_node.next = self.first # Le node inséré reçoit l'actuel first en guise de n+1
-            self.first = new_node # Le nouveau node devient alors le first
+            new_node._next = self._first # Le node inséré reçoit l'actuel first en guise de n+1
+            self._first = new_node # Le nouveau node devient alors le first
         elif index == len(self):
             self.append(value)
         else:
             compteur = 0
-            node = self.first
+            node = self._first
             while node:
                 if compteur == index - 1:
                     new_node.next = node.next
@@ -87,7 +110,7 @@ class Clist:
 
     def index_of(self, value:str|int) -> int:
         compteur = 0
-        node = self.first
+        node = self._first
         while node:
             if value == node.val:
                 return compteur
@@ -127,17 +150,17 @@ class Clist:
 
     def reversed(self) -> None:
         lcopy = Clist()
-        node = self.first
+        node = self._first
         while node:
             lcopy.insert(0, node.val)
             node = node.next
-        self.first = lcopy.first
-        self.last = lcopy.last
+        self._first = lcopy._first
+        self._last = lcopy._last
 
 
     def is_unique(self) -> bool:
         checklist=Clist()
-        node = self.first
+        node = self._first
         while node:
             if checklist.contains(node.val):
                 return False
