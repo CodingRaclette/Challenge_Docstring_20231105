@@ -50,6 +50,9 @@ class Clist:
     def __len__(self):
         return self._length
 
+    def __getitem__(self, item):
+        return self.at_index(item)
+
 
     def append(self, val:int|str) -> None:
         self._length += 1
