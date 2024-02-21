@@ -2,7 +2,7 @@
 Jeu de tests unitaires pour vérification du challenge liste chainée
 """
 import pytest
-from liste_chainee.main import Clist, Cnode
+from liste_chainee.clist import Clist, Cnode
 
 class TestCase:
     @staticmethod
